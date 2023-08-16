@@ -73,13 +73,3 @@ fi
 if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
 fi
-
-# From here on only continue if not root
-if [ "$EUID" == "0" ]; then 
-  return 0
-fi
-
-# SSH agent
-if [ -f /usr/bin/keychain ]; then
-  eval "$(/usr/bin/keychain --eval --noask --quiet --agents ssh "$HOME"/.ssh/id_rsa)"
-fi
