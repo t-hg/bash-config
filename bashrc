@@ -24,8 +24,15 @@ alias ip='ip --color=auto'
 # Prompt
 PS1="\[${color_blue}\]\W\[${color_reset}\]"
 
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-  . /usr/share/git/completion/git-prompt.sh
+
+if [ -z "$GIT_PROMPT" ]; then
+  if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
+  fi
+fi
+
+if [ -n "$GIT_PROMPT" ]; then
+  . "$GIT_PROMPT"
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -40,10 +47,16 @@ if [ "$EUID" == "0" ]; then
 fi
 
 PS1="${PS1} \[${prompt_color}\]\\\$\[${color_reset}\] "
-PS1_RESET=$PS1
 
-if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
-  . /usr/share/bash-preexec/bash-preexec.sh
+if [ -z "$BASH_PREEXEC" ]; then
+  if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
+    BASH_PREEXEC=/usr/share/bash-preexec/bash-preexec.sh
+  fi
+fi
+
+if [ -n "$BASH_PREEXEC" ]; then
+  . "$BASH_PREEXEC"
+  PS1_RESET=$PS1
 
   function preexec() {
     start=$(date +%s)
@@ -75,6 +88,12 @@ if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
 fi
 
 # Bash completion
-if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+if [ -z "$BASH_COMPLETION" ]; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    BASH_COMPLETION=/usr/share/bash-completion/bash_completion
+  fi
+fi
+
+if [ -n "$BASH_COMPLETION" ]; then
+    . "$BASH_COMPLETION"
 fi
