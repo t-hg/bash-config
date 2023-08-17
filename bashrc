@@ -22,7 +22,7 @@ alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 
 # Prompt
-PS1="${color_blue}\W${color_reset}"
+PS1="\[${color_blue}\]\W\[${color_reset}\]"
 
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
   . /usr/share/git/completion/git-prompt.sh
@@ -30,7 +30,7 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
   GIT_PS1_SHOWUPSTREAM=1
-  PS1=${PS1}${color_purple}'$(__git_ps1 " (%s)")'${color_reset}
+  PS1="${PS1}\[${color_purple}\]"'$(__git_ps1 " (%s)")'"\[${color_reset}\]"
 fi
 
 prompt_color=$color_green
@@ -40,7 +40,7 @@ if [ "$EUID" == "0" ]; then
   prompt_color=$color_red
 fi
 
-PS1="${PS1} ${prompt_color}\\\$${color_reset} "
+PS1="${PS1} \[${prompt_color}\]\\\$\[${color_reset}\] "
 
 if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
   . /usr/share/bash-preexec/bash-preexec.sh
