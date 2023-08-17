@@ -59,9 +59,9 @@ if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
     if [ $elapsed -eq 0 ]; then
       return 0
     elif [ $elapsed -gt 3600 ]; then
-      formatted=$(date -d@${elapsed} -u +%Hh%Mm%Ss)
+      formatted=$(date -d@${elapsed} -u +%-Hh%-Mm%-Ss)
     elif [ $elapsed -gt 60 ]; then
-      formatted=$(date -d@${elapsed} -u +%Mm%s)
+      formatted=$(date -d@${elapsed} -u +%-Mm%-Ss)
     else
       formatted=${elapsed}s
     fi
