@@ -65,7 +65,7 @@ if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
     else
       formatted=${elapsed}s
     fi
-    printf "${color_brown}took${color_reset} %s " "$formatted"
+    printf "took ${color_brown}%s${color_reset} " "$formatted"
   }
 fi
 
