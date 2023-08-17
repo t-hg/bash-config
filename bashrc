@@ -36,11 +36,11 @@ fi
 prompt_color=$color_green
 
 if [ "$EUID" == "0" ]; then 
-  # Root user
   prompt_color=$color_red
 fi
 
 PS1="${PS1} \[${prompt_color}\]\\\$\[${color_reset}\] "
+PS1_RESET=$PS1
 
 if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
   . /usr/share/bash-preexec/bash-preexec.sh
@@ -50,12 +50,16 @@ if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
   }
 
   function precmd() {
+    PS1=$PS1_RESET
+
     if [ "$start" == "" ]; then
       return 0
     fi
+
     end=$(date +%s)
     elapsed=$((end-start))
     start=
+
     if [ $elapsed -eq 0 ]; then
       return 0
     elif [ $elapsed -gt 3600 ]; then
@@ -65,7 +69,8 @@ if [ -f /usr/share/bash-preexec/bash-preexec.sh ]; then
     else
       formatted=${elapsed}s
     fi
-    printf "took ${color_brown}%s${color_reset} " "$formatted"
+
+    PS1="took \[${color_brown}\]${formatted}\[${color_reset}\] ${PS1}"
   }
 fi
 
