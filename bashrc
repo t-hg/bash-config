@@ -59,6 +59,10 @@ if [ -n "$BASH_PREEXEC" ]; then
 
   function preexec() {
     start=$(date +%s)
+
+    # show last command name
+    lastcmd=$(history 1 | cut -c8-)
+    echo -ne "\e]2;$lastcmd\a\e]1;$lastcmd\a";
   }
 
   function precmd() {
