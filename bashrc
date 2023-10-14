@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# History
+export HISTCONTROL=ignoreboth
+
 # Color variables
 color_reset='\e[0m'
 color_red='\e[31m'
