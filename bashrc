@@ -27,7 +27,6 @@ alias ip='ip --color=auto'
 # Prompt
 PS1="\[${color_blue}\]\W\[${color_reset}\]"
 
-
 if [ -z "$GIT_PROMPT" ]; then
   if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
@@ -100,5 +99,17 @@ if [ -z "$BASH_COMPLETION" ]; then
 fi
 
 if [ -n "$BASH_COMPLETION" ]; then
-    . "$BASH_COMPLETION"
+  . "$BASH_COMPLETION"
 fi
+
+# Fuzzy finder
+if [ -z "$FZF_KEY_BINDINGS" ]; then
+  if [ -f /usr/share/fzf/key-bindings.bash ]; then
+    FZF_KEY_BINDINGS=/usr/share/fzf/key-bindings.bash
+  fi
+fi
+
+if [ -n "$FZF_KEY_BINDINGS" ]; then
+  . "$FZF_KEY_BINDINGS"
+fi
+
