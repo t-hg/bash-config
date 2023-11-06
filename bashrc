@@ -10,11 +10,11 @@ export HISTCONTROL=ignoreboth
 
 # Color variables
 color_reset='\e[0m'
-color_red='\e[31m'
-color_green='\e[32m'
-color_brown='\e[33m'
-color_blue='\e[34m'
-color_purple='\e[35m'
+color_red='\e[1;31m'
+color_green='\e[1;32m'
+color_brown='\e[1;33m'
+color_blue='\e[1;34m'
+color_purple='\e[1;35m'
 
 # Color support
 alias ls='ls --color=auto'
