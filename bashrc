@@ -113,3 +113,7 @@ if [ -n "$FZF_KEY_BINDINGS" ]; then
   . "$FZF_KEY_BINDINGS"
 fi
 
+# Source custom files
+[[ -d "$HOME/.bashrc.d" ]] && for file in $HOME/.bashrc.d/*; do
+  . "$file"
+done
