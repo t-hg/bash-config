@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 # History
+shopt -s histappend
 export HISTCONTROL=ignoreboth
 
 # Color variables
