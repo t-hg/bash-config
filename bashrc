@@ -72,8 +72,6 @@ if [ -n "$BASH_PREEXEC" ]; then
 
   function precmd() {
     history -a
-    history -c
-    history -r
 
     PS1=$(echo -n "$PS1" | sed -r 's/took \\\[\\e\[1;33m\\\]([0-9]+s|[0-9]+m[0-9]+s|[0-9]+h[0-9]+m[0-9]+s)\\\[\\e\[0m\\\] //g')
     if [ "$start" == "" ]; then
