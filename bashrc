@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Vi Mode
+set -o vi
 if ! [ -f "$HOME/.inputrc" ]; then
     cat <<'EOF' >$HOME/.inputrc
 set editing-mode vi
@@ -69,6 +70,11 @@ if [ -z "$BASH_PREEXEC" ]; then
     fi
 fi
 
+is_emacs=false
+if [ "$TERM" == "dumb" ] || [ "$TERM" == "eterm-color" ]; then
+    is_emacs=true
+fi
+
 if [ -n "$BASH_PREEXEC" ]; then
     . "$BASH_PREEXEC"
 
@@ -76,8 +82,10 @@ if [ -n "$BASH_PREEXEC" ]; then
         start=$(date +%s)
 
         # show last command name
-        lastcmd=$(history 1 | cut -c8-)
-        echo -ne "\e]2;$lastcmd\a\e]1;$lastcmd\a"
+	if [ "$is_emacs" == "false" ]; then
+	    lastcmd=$(history 1 | cut -c8-)
+	    echo -ne "\e]2;$lastcmd\a\e]1;$lastcmd\a"
+	fi
     }
 
     function precmd() {
