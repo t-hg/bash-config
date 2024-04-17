@@ -82,10 +82,10 @@ if [ -n "$BASH_PREEXEC" ]; then
         start=$(date +%s)
 
         # show last command name
-	if [ "$is_emacs" == "false" ]; then
-	    lastcmd=$(history 1 | cut -c8-)
-	    echo -ne "\e]2;$lastcmd\a\e]1;$lastcmd\a"
-	fi
+		if [ "$is_emacs" == "false" ]; then
+			lastcmd=$(history 1 | cut -c8-)
+			echo -ne "\e]2;$lastcmd\a\e]1;$lastcmd\a"
+		fi
     }
 
     function precmd() {
