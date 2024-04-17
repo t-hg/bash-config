@@ -6,16 +6,16 @@
 [[ $- != *i* ]] && return
 
 # Vi Mode
-set -o vi
-if ! [ -f "$HOME/.inputrc" ]; then
-    cat <<'EOF' >$HOME/.inputrc
-set editing-mode vi
-set keyseq-timeout 0
-set show-mode-in-prompt on
-set vi-ins-mode-string \1\e[6 q\2
-set vi-cmd-mode-string \1\e[2 q\2
-EOF
-fi
+#set -o vi
+#if ! [ -f "$HOME/.inputrc" ]; then
+#    cat <<'EOF' >$HOME/.inputrc
+#set editing-mode vi
+#set keyseq-timeout 0
+#set show-mode-in-prompt on
+#set vi-ins-mode-string \1\e[6 q\2
+#set vi-cmd-mode-string \1\e[2 q\2
+#EOF
+#fi
 
 # History
 shopt -s histappend
